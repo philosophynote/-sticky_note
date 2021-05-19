@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'learning',
+    'django.contrib.sites',
+    'sitemanage',
+    'storages',
 ]
 
 SITE_ID = 1
@@ -68,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+                'learning.context_processors.all_category',
             ],
         },
     },
@@ -124,8 +129,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR, 'project_static')
+#PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+#STATIC_ROOT = os.path.join(BASE_DIR, 'project_static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
