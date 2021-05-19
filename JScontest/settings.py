@@ -39,13 +39,11 @@ INSTALLED_APPS = [
     'learning',
     'django.contrib.sites',
     'sitemanage',
-    'storages',
 ]
 
 SITE_ID = 1
 
 MIDDLEWARE = [
-
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
 ]
 
 ROOT_URLCONF = 'JScontest.urls'
@@ -155,7 +154,7 @@ ALLOWED_HOSTS = ['*']
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # deployするときはコメント外す
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEBUG = False
 
