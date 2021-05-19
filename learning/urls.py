@@ -18,7 +18,5 @@ urlpatterns = [
     path('category_detail/<str:name_en>',
          views.CategoryDetail.as_view(), name='category_detail'),
     path('search', views.Search, name='search'),
-    path('tag_list',views.TagList.as_view(),name="tag_list"),
-    path('tag_detail/<str:name>', views.TagDetail.as_view(), name="tag_detail"),
 ]
 

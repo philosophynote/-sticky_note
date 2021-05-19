@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
      <div class="row">
-          <div class="col-md-9">
+          <div class="col-md-6">
                <br>
                <h2>カード登録・更新</h2>
                <br>
@@ -14,11 +14,6 @@
                          <label class="fs-4">カテゴリー</label>
                          <br>
                          {{ form.category}}
-                    </div>
-                    <br>
-                    <div class="form-group">
-                         <label class="fs-4">色</label>
-                         {{ form.color}}
                     </div>
                     <br>
                     <div class="form-group">
@@ -94,11 +89,16 @@
                     </div>
                     <br>
                     <button type="submit" class="btn btn-primary">保存</button>
+                    <button id="wiki"  class="btn btn-primary">wiki</button>
                     <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-dark">戻る</a>
                     <br>
                     <br>
 
                </form>
+          </div>
+          <div class="col-md-6 editor">
+            <div id="quill-editor_2">
+            </div>
           </div>
 
      </div>

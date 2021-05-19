@@ -1,0 +1,81 @@
+{% extends 'mysite/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">    
+                <div class="card-body">
+                    <h3 class="card-title fw-bold">タイトル：{{ object.title}}</h3>
+                    <p class="fw-bolder">カテゴリ：{{ object.category}}</p>
+                    <p class="fw-bolder">URL：{{ object.url}}</p>
+                    <p class="fw-bolder">引用箇所：{{ object.section}}</p>
+                    <br>
+                    <p class="card-text">
+                        本文：<br>
+                        <br>
+                        {{object.content|safe|linebreaksbr|urlize}}
+                        <br>
+                        どういうことか<br>
+                        <br>
+                        {{object.what|safe|linebreaksbr|urlize}}
+                        <br>
+                        原因は<br>
+                        <br>
+                        {{object.why|safe|linebreaksbr|urlize}}
+                        <br>
+                        今後の展開は<br>
+                        <br>
+                        {{object.sowhat|safe|linebreaksbr|urlize}}
+                        <br>
+                    </p>
+                    <br>
+                    <br>
+                    <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-dark">戻る</a>
+                    <a type="button" class="btn btn-outline-info" data-mdb-ripple-color="dark" id="download" download=`{{ object.title}}.txt`>ダウンロード</a>
+                    <a href="{% url 'learning:card_update' object.pk %}" class="btn btn-primary">更新</a>
+                    <a href="{% url 'learning:card_delete' object.pk %}" class="btn btn-danger">削除</a>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <div class="col-md-6 detail-editor">
+            <div id="quill-editor_1">
+                <h3 class="card-title fw-bold">{{object.title}}</h3>
+                <br>
+                <p class="card-text">
+                    {{object.content|safe|linebreaksbr|urlize}}について。
+                </p>
+                <br>
+                <p class="card-text">
+                    この部分が述べていることは{{object.what|safe|linebreaksbr|urlize}}ということである。
+                </p>
+                <br>
+                <p class="card-text">
+                    これが起きた原因は{{object.why|safe|linebreaksbr|urlize}}したためである。
+                </p>
+                <br>
+                <p class="card-text">
+                    {{object.sowhat|safe|linebreaksbr|urlize}}という理由でこの点は把握しておくべき内容である。
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ object.category}}</h5>
+                        <p>このカテゴリの他のカード</p>
+                            {%for item in category_cards%}
+                            <li class="list-group-item"><a href="{% url 'learning:card_detail' item.id %}">{{ item.title }}</a></li>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

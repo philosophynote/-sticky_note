@@ -1,7 +1,7 @@
 from django.shortcuts import render, resolve_url, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, DeleteView, ListView
-from .models import Card, Category,Tag
+from .models import Card, Category
 from django.urls import reverse_lazy
 from .forms import CardForm, LoginForm, SignUpForm, SearchForm
 from django.contrib import messages
@@ -10,6 +10,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 class TopPage(TemplateView):
@@ -61,14 +62,14 @@ class CardDetail(DetailView):
 
 
 class CardUpdate(UpdateView):
-    template_name = 'mysite/card_update.html'
+    template_name = 'mysite/card_create.html'
 
     model = Card
     form_class = CardForm
 
     def get_success_url(self):
-        messages.info(self.request, 'CARDを更新しました。')
-        return resolve_url('learning:index', pk=self.kwargs['pk'])
+        messages.info(self.request, 'Cardを更新しました。')
+        return resolve_url('learning:card_detail', pk=self.kwargs['pk'])
 
 
 class CardDelete(DeleteView):
@@ -162,25 +163,3 @@ def Search(request):
         return render(request, 'mysite/search.html', params)
 
 
-class TagList(ListView):
-    template_name = 'mysite/tag_list.html'
-
-    model = Tag
-
-
-class TagDetail(DetailView):
-    template_name = 'mysite/tag_detail.html'
-
-    model = Tag
-    slug_field = "slug"
-    slug_url_kwarg = "slug"
-
-    def get_context_data(self, *args, **kargs):
-        detail_data = Tag.objects.get(slug=self.kwargs['slug'])
-        tag_cards = Card.objects
-        params = {
-            'object': detail_data,
-            'tag_cards': tag_cards,
-        }
-
-        return params

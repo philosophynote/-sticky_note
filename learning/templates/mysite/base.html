@@ -20,6 +20,7 @@
     <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
     <script type="text/javascript module" src="{% static 'js/mdb.pro.js' %}"></script>
     <script type="text/javascript module" src="{% static 'js/pro/sidenav.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -50,9 +51,8 @@
         </div>
         <div class="input-group rounded">
             <form action="{% url 'learning:search' %}" class="form-inline" method="POST">
-            {% csrf_token %}
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" ,
-                name="freeword">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" ,name="freeword">
             </form>
             <span class="input-group-text border-0" id="search-addon">
                 <i class="fas fa-search"></i>
@@ -61,33 +61,22 @@
         <br>
         <ul class="sidenav-menu">
             <li class="sidenav-item">
-                <a class="sidenav-link">
+                <a class="sidenav-link" href="{% url 'learning:index' %}">
                     <i class="far fa-smile fa-fw me-3"></i><span>My Page</span></a>
             </li>
             <li class="sidenav-item">
-                <a class="sidenav-link"><i class="fas fa-grin fa-fw me-3"></i><span>Category</span></a>
-                
-                {% for category in category_cards %}
-
-                <ul class="sidenav-collapse show">
-                    <li class="sidenav-item">
-                        <a class="sidenav-link">{{category.name}}</a>
-                    </li>
-                </ul>
-
-                {% endfor %}
+                <a class="sidenav-link" href="{% url 'learning:card_list' %}">
+                    <i class="far fa-smile fa-fw me-3"></i><span>Card</span></a>
             </li>
             <li class="sidenav-item">
-                <a class="sidenav-link"><i class="fas fa-grin-wink fa-fw me-3"></i><span>Color</span></a>
-                <ul class="sidenav-collapse">
-                    <li class="sidenav-item">
-                        <a class="sidenav-link">Link 4</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidenav-item">
-                <a class="sidenav-link">
-                    <i class="far fa-smile fa-fw me-3"></i><span>Dashboard</span></a>
+                <a class="sidenav-link" data-mdb-toggle="collapse" href="#collapsecategory" role="button" aria-expanded="false" aria-controls="collapsecategory"><i class="fas fa-grin fa-fw me-3"></i><span>Category</span></a>
+                    <ul class="sidenav-collapse" id="collapsecategory">
+                    {% for category in category_list %}
+                        <li class="sidenav-item">
+                            <a class="sidenav-link" href="{% url 'learning:category_detail' category.name_en %}">{{category.name}}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
             </li>
         </ul>
     </nav>
@@ -116,17 +105,19 @@
         
     <!-- MDB -->
     {% load static %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="{% static 'js/card.js' %}"></script>
     <script type="text/javascript" src="https://serratus.github.io/quaggaJS/examples/js/quagga.min.js"></script>
     <script type="text/javascript" src="{% static 'js/googlebooks.js' %}"></script>
-    
-    
+
+
+
+
     <script>
-        var quill = new Quill('#editor', { theme: 'snow' });
+        {% comment %} var quill = new Quill('#editor', { theme: 'snow' }); {% endcomment %}
 
         /* 拡張テキストエディタ「Quill」に関する処理 */
 
@@ -140,7 +131,7 @@
 
             var toolbarOptions; // ツールバーの機能設定
             var quill; // エディタ情報
-            var themes = set_themes(); // エディタのテーマ（snow , bubble）
+            //var themes = set_themes(); // エディタのテーマ（snow , bubble）
 
             // ツールバー機能の設定
             toolbarOptions = [
@@ -202,7 +193,7 @@
                 },
                 placeholder: '入力してください',
                 //ツールバーのあるデザイン
-                theme: themes //'snow' or 'bubble'
+                theme: "snow" //'snow' or 'bubble'
             });
 
             return quill;
@@ -220,7 +211,7 @@
 
             var toolbarOptions // ツールバーの機能設定
             var quill // エディタ情報
-            var themes = set_themes(); // エディタのテーマ（snow , bubble）
+            //var themes = set_themes(); // エディタのテーマ（snow , bubble）
 
             // ツールバー機能の設定
             toolbarOptions = [
@@ -282,7 +273,7 @@
                 },
                 placeholder: '入力してください',
                 //ツールバーのあるデザイン
-                theme: themes //'snow' or 'bubble'
+                theme: "snow" //'snow' or 'bubble'
             });
 
             //表示させる文章データを取得
@@ -299,62 +290,54 @@
             return quill;
         }
 
-
-        /**
-        テキストページ生成
-        エディタで作ったデータを表示させる側（編集不可）の設定
-        引数： 作成する場所のid
-        引数２： 表示させるJSONテキスト
-        戻り値： Quillエディタの生成情報
-        */
-        function QuillPageMake(make_id, json_text) {
-
-            var quill; //エディタ情報
-            var json_data; //エディタに表示させるデータ（json形式）
-
-            //渡ってきたID名に「#」をくっつける
-            make_id = '#' + make_id;
-
-            //エディタの情報を生成
-            quill = new Quill(make_id, {
-                //ツールバー無デザイン
-                theme: 'bubble'
-            });
-            //エディタを入力不可にする
-            quill.disable();
-
-            //表示させる文章データを取得
-            json_data = JSON.parse(json_text);
-
-            //データを表示
-            quill.setContents(json_data);
-
-            $(make_id).html = set_quill_br(String($(make_id).html));
-
-            // brが失われる場合の補完
-            var htmlstr = String($(make_id).html());
-            $(make_id).html(set_quill_br(htmlstr));
-
-            return quill;
+        const decideid=()=>{
+            const nowdate = new Date();
+            const ThisMonth = String(nowdate.getMonth() + 1).padStart(2, 0);
+            const ThisDay = String(nowdate.getDate()).padStart(2, 0);
+            const ThisHour = String(nowdate.getHours()).padStart(2, 0);
+            const ThisMinute = String(nowdate.getMinutes()).padStart(2, 0)
+            const thisId = `${ThisMonth}${ThisDay}${ThisHour}${ThisMinute}`
+            return thisId
         }
+        
+        
+            var id=decideid();
+            var quill_1 = QuillEditorMake("quill-editor_1")
+            var content_length=quill_1.getLength()
+            var content = quill_1.getText(0,content_length)
+            const blob = new Blob([content],{type: 'text/plain'})
+            const a =document.getElementById('download');
+            a.href = window.URL.createObjectURL(blob)
+            //const textdata={"id":id,"content":content};
+            //const notename=`${id}.json`;
+            //let savednote=JSON.stringify(textdata);
+            //const link = document.createElement("a");
+            //link.href = "data:text/plain," + encodeURIComponent(savednote);
+            //a.download = notename;
+        
 
-        // テーマ設定（PCとスマホで切り替える画面幅で判定）
-        function set_themes() {
-            var themes;
-            if (window.parent.screen.width > 800) {
-                themes = "snow";
-            } else {
-                themes = "bubble";
-            }
-            return themes;
-        }
+        //$("#download").on(click,notesave());
 
         // 通常のエディタ
-        var quill_1 = QuillEditorMake("quill-editor_1")
+
+        
+        //console.log(quill_1);
+        //console.log(quill_1.editor);
+        //console.log(quill_1.editor.delta);
+        //console.log(quill_1.editor.delta.ops);
+        //console.log(content_length)
+        //console.log(id)
+        //console.log(content)
+
+        //console.log(textdata)
+        
         // 通常のエディタ（文章あり）
-        //var quill_2 = QuillUpdateEditorMake("quill-editor_2" ,quill_1.getContent)
+        var quill_2 = QuillUpdateEditorMake("quill-editor_2" ,readContent)
         // 編集不可エディタ（記事表示用）
         //var quill_3 = QuillPageMake("quill-editor_1" ,quill_1.getContent)
+
+    
+
 
     </script>
     <script>
@@ -393,7 +376,7 @@
     </script>
     <script>
         $(function () {
-            $("#dragcard").draggable();
+            $(".dragcard").draggable();
         });
 
     </script>

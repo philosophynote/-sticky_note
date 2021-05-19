@@ -1,0 +1,1 @@
+import * as Twitter from 'twitter';

@@ -28,7 +28,7 @@
 }
 
 .container{
-    padding-left: 100px;
+  padding-left: 100px;
 }
 
 .newcard{
@@ -44,4 +44,27 @@ body{
   margin-bottom: 5px;
   background-color:#008f25;
   color:white;
+}
+
+.index-editor{
+  height: 50vh;
+  
+  background-color: #fff;
+}
+
+.detail-editor{
+  background-color: #fff;
+}
+
+.ql-editor{
+  background-color: #fff;
+}
+
+.scroll{
+  height: 100vh;
+  overflow: scroll;
+}
+
+.open-editor{
+  margin-bottom: 2rem;
 }
