@@ -1,0 +1,43 @@
+{% extends 'mysite/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <br>
+            <h2>記事一覧</h2>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>タイトル</th>
+                        <th>サブタイトル</th>
+                        <th>URL</th>
+                        <th>本文</th>
+                        <th>何</th>
+                        <th>理由</th>
+                        <th>だから何</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- モデル名_listで自動的に渡される -->
+                    {% for item in search_list %}
+                    <tr>
+                        <td><a href="{% url 'mysite:card_update' item.pk %}" class="text-decoration-underline">{{item.title}}</a></td>
+                        <td>{{item.subtitle|safe|truncatechars_html:30}}</td>
+                        <td>{{item.curl|safe|truncatechars_html:30}}</td>
+                        <td>{{item.content|safe|truncatechars_html:30}}</td>
+                        <td>{{item.what|safe|truncatechars_html:30}}</td>
+                        <td>{{item.why|safe|truncatechars_html:30}}</td>
+                        <td>{{item.sowhat|safe|truncatechars_html:30}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

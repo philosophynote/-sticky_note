@@ -1,0 +1,47 @@
+.card-header:hover{
+    cursor: pointer; /* マウスカーソルを手の形にする */
+    opacity: 0.6; /* ボタンの透明度を60%にする */
+}
+
+#photo-area.viewport {
+  height: 240px;
+  width:320px;
+}
+
+#photo-area.viewport canvas, video {
+   float: left;
+   width:320px;
+   height: 288px;
+}
+
+#photo-area.viewport canvas.drawingBuffer, video.drawingBuffer {
+   margin-left: -320px;
+}
+
+
+.card{
+    cursor:move
+}
+
+.card.over {
+  border: 3px dotted #666;
+}
+
+.container{
+    padding-left: 100px;
+}
+
+.newcard{
+  margin-left: 20px;
+}
+
+body{
+  background-color: #f8f8f8;
+}
+
+.form-button{
+  margin-left: 5px;
+  margin-bottom: 5px;
+  background-color:#008f25;
+  color:white;
+}

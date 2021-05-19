@@ -1,0 +1,9 @@
+
+{% for tag in item.tags.all %}
+<a href="#" class="btn btn-primary"  style="color:black; background-color:#f8f8f8;">
+    <i class="fas fa-tag"></i>
+    {{tag.name}}
+</a>
+{% endfor %}
+
+{% comment %} /tag_detail/{{tag.name}}/ {% endcomment %}
