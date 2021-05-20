@@ -140,7 +140,7 @@ const search = async () => {
                     <h3 class='mb8'>${items[0].title}</h3>
                     <p class='line-clamp-2'>${items[0].descrition}</p>
                 </div>
-                <button type="button" class="btn btn-primary ISBNsave" data-mdb-target="#updateModal" data-mdb-toggle="modal" data-mdb -dismiss="modal">選択</button>
+                <button type="button" class="btn btn-success ISBNsave" data-mdb-target="#updateModal" data-mdb-toggle="modal" data-mdb -dismiss="modal">選択</button>
                 <br>
             </div>`;
     ;

@@ -41,14 +41,14 @@
                                         <div class="modal-body">
                                              <div id="photo-area" class="viewport"></div>
                                              <input class='input bg-white mb16' type='search' id='q' />
-                                             <button id="readbook" class="btn btn-primary">検索</button>
+                                             <button id="readbook" class="btn btn-success">検索</button>
                                              <div>
                                                   <h5 class='mb8'>検索結果</h5>
                                                   <div id='results'></div>
                                              </div>
                                         </div>
                                         <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                                        <button type="button" class="btn btn-success" data-mdb-dismiss="modal">
                                              Close
                                         </button>
                                         </div>
@@ -59,7 +59,7 @@
                     </div>
                     <br>
                     <div class="form-group">
-                         <label class="fs-4">サブタイトル</label>
+                         <label class="fs-4">見出し</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_2">音声入力開始</button>
                          {{ form.subtitle}}
                     </div>
@@ -71,25 +71,24 @@
                     </div>
                     <br>
                     <div class="form-group">
-                         <label class="fs-4">どういうこと？</label>
+                         <label class="fs-4">What？</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_4">音声入力開始</button>
                          {{form.what }}
                     </div>
                     <br>
                     <div class="form-group">
-                         <label class="fs-4">理由は？</label>
+                         <label class="fs-4">Why？</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_5">音声入力開始</button>
                          {{form.why }}
                     </div>
                     <br>
                     <div class="form-group">
-                         <label class="fs-4">何故重要なの？</label>
+                         <label class="fs-4">So What？</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_6">音声入力開始</button>
                          {{form.sowhat }}
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary">保存</button>
-                    <button id="wiki"  class="btn btn-primary">wiki</button>
+                    <button type="submit" class="btn btn-success">保存</button>
                     <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-dark">戻る</a>
                     <br>
                     <br>

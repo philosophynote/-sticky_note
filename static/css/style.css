@@ -19,7 +19,7 @@
 }
 
 
-.card{
+.dragcard{
     cursor:move
 }
 
@@ -60,11 +60,43 @@ body{
   background-color: #fff;
 }
 
-.scroll{
-  height: 100vh;
-  overflow: scroll;
-}
+
 
 .open-editor{
   margin-bottom: 2rem;
+}
+
+.maintext{
+  background-color: white;
+}
+
+/* toppage */
+
+.logo{
+  width:200px;
+  height:200px;
+}
+
+.evernote{
+  color: #fff;
+  background-color:#008f25;
+}
+
+/* .hada-pic{
+  width:640px;
+  height: 427px;
+  object-fit: cover;
+} */
+
+.hada-comment{
+  padding-left: 50px;
+}
+
+/* index */
+.editor-open{
+  margin-left: 20px;
+}
+
+.note-save{
+  margin-left: 20px;
 }

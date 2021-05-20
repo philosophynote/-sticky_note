@@ -61,19 +61,19 @@
                 </p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ object.category}}</h5>
-                        <p>このカテゴリの他のカード</p>
-                            {%for item in category_cards%}
-                            <li class="list-group-item"><a href="{% url 'learning:card_detail' item.id %}">{{ item.title }}</a></li>
-                            {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% comment %} <div class="row"> {% endcomment %}
+            {% comment %} <div class="col-sm-3"> {% endcomment %}
+                {% comment %} <div class="card"> {% endcomment %}
+                    {% comment %} <div class="card-body"> {% endcomment %}
+                        {% comment %} <h5 class="card-title">{{ object.category}}</h5> {% endcomment %}
+                        {% comment %} <p>このカテゴリの他のカード</p> {% endcomment %}
+                            {% comment %} {%for item in category_cards%} {% endcomment %}
+                            {% comment %} <li class="list-group-item"><a href="{% url 'learning:card_detail' item.id %}">{{ item.title }}</a></li> {% endcomment %}
+                            {% comment %} {% endfor %} {% endcomment %}
+                    {% comment %} </div> {% endcomment %}
+                {% comment %} </div> {% endcomment %}
+            {% comment %} </div> {% endcomment %}
+        {% comment %} </div> {% endcomment %}
 
     </div>
 </div>

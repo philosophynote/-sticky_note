@@ -11,22 +11,24 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th width="200px" class="text-white">タイトル</th>
-                        <th width="400px" class="text-white">サブタイトル</th>
-                        <th width="400px" class="text-white">URL</th>
-                        <th width="200px" class="text-white">本文</th>
-                        <th width="200px" class="text-white">何</th>
-                        <th width="200px" class="text-white">理由</th>
-                        <th width="200px" class="text-white">だから何</th>
+                        <th width="400px" class="text-black">タイトル</th>
+                        <th width="400px" class="text-black">見出し</th>
+                        <th width="400px" class="text-black">URL</th>
+                        <th width="400px" class="text-black">該当箇所</th>
+                        <th width="400px" class="text-black">本文</th>
+                        <th width="400px" class="text-black">What</th>
+                        <th width="400px" class="text-black">Why</th>
+                        <th width="400px" class="text-black">So What</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- モデル名_listで自動的に渡される -->
                     {% for item in card_list %}
                     <tr>
-                        <td><a href="{% url 'learning:card_detail' item.pk %}" class="text-decoration-underline">{{item.title}}</a></td>
+                        <td><a href="{% url 'learning:card_detail' item.pk %}" class="text-black text-decoration-underline">{{item.title}}</a></td>
                         <td>{{item.subtitle|safe|truncatechars_html:30}}</td>
-                        <td>{{item.curl|safe|truncatechars_html:30}}</td>
+                        <td>{{item.url|safe|truncatechars_html:30}}</td>
+                        <td>{{item.section|safe|truncatechars_html:30}}</td>
                         <td>{{item.content|safe|truncatechars_html:30}}</td>
                         <td>{{item.what|safe|truncatechars_html:30}}</td>
                         <td>{{item.why|safe|truncatechars_html:30}}</td>

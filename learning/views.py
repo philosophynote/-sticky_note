@@ -137,8 +137,7 @@ class CategoryDetail(DetailView):
 
     def get_context_data(self, *args, **kargs):
         detail_data = Category.objects.get(name_en=self.kwargs['name_en'])
-        category_cards = Card.objects.filter(
-            category=detail_data.id).order_by('-created_at')
+        category_cards = Card.objects.filter(category=detail_data.id).order_by('-created_at')
 
         params = {
             'object': detail_data,
@@ -154,8 +153,7 @@ def Search(request):
 
         if searchform.is_valid():
             freeword = searchform.cleaned_data["freeword"]
-            search_list = Card.objects.filter(
-                Q(title__icontains=freeword) | Q(content__icontains=freeword))
+            search_list = Card.objects.filter(Q(title__icontains=freeword)|Q(content__icontains=freeword))
 
         params = {
             'search_list': search_list,

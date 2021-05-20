@@ -9,6 +9,7 @@
     <title>{{request.site.siteconfig.meta_title}}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link rel="icon" type="image/png" href="{% static 'img/sticky-note.ico' %}" />
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
     <!-- MDB -->
@@ -27,13 +28,13 @@
 
 
     <!-- Sidenav -->
-    <nav id="notesidenav" class="sidenav" data-mdb-color="light" data-mdb-mode="side" data-mdb-slim-collapsed="true" data-mdb-content="#content"
+    <nav id="notesidenav" class="sidenav d-lg-block" data-hidden="false" data-mdb-color="light" data-mdb-mode="side" data-mdb-slim-collapsed="true" data-mdb-content="#content"
         style="background-color: #2d2c2c; width: 240px; height: 100vh; position: fixed; transition: all 0.3s linear 0s; transform: translateX(0%);">
 
         <br>
         <div class="dropdown">
             <a type="button" class="nav-link dropdown-toggle text-white" id="account" data-mdb-toggle="dropdown" 
-                aria-expanded="false">{{ request.user }}
+                aria-expanded="false"><i class="far fa-user-circle me-3"></i>{{ request.user }}
             </a>
             <br>
             <a href="{% url 'learning:card_create' %}" type="button" class="btn btn-rounded text-start text-white d-flex align-items-center justify-content-center fs-6 newcard" style="background-color:#008f25; width: 200px;"> ＋新規作成</a>
@@ -62,14 +63,14 @@
         <ul class="sidenav-menu">
             <li class="sidenav-item">
                 <a class="sidenav-link" href="{% url 'learning:index' %}">
-                    <i class="far fa-smile fa-fw me-3"></i><span>My Page</span></a>
+                    <i class="fas fa-home me-3"></i><span>Home</span></a>
             </li>
             <li class="sidenav-item">
                 <a class="sidenav-link" href="{% url 'learning:card_list' %}">
-                    <i class="far fa-smile fa-fw me-3"></i><span>Card</span></a>
+                    <i class="far fa-sticky-note me-3"></i><span>カード一覧</span></a>
             </li>
             <li class="sidenav-item">
-                <a class="sidenav-link" data-mdb-toggle="collapse" href="#collapsecategory" role="button" aria-expanded="false" aria-controls="collapsecategory"><i class="fas fa-grin fa-fw me-3"></i><span>Category</span></a>
+                <a class="sidenav-link" data-mdb-toggle="collapse" href="#collapsecategory" role="button" aria-expanded="false" aria-controls="collapsecategory"><i class="far fa-clone me-3"></i><span>カテゴリ</span></a>
                     <ul class="sidenav-collapse" id="collapsecategory">
                     {% for category in category_list %}
                         <li class="sidenav-item">
@@ -78,14 +79,13 @@
                     {% endfor %}
                     </ul>
             </li>
+            <li class="sidenav-item">
+                <a class="sidenav-link" href="/admin" target="_blank">
+                    <i class="far fa-file fa-fw me-3"></i><span>管理画面</span></a>
+            </li>
         </ul>
     </nav>
 
-    <!-- Toggler -->
-    <button data-mdb-toggle="sidenav" data-mdb-target="#notesidenav" class="btn btn-primary" aria-controls="#notesidenav" aria-haspopup="true">
-    <i class="fas fa-bars"></i>
-    </button>
-    <!-- Toggler -->
 
     <!-- Sidenav -->
     {% comment %} {% if messages %} {% endcomment %}
@@ -343,7 +343,7 @@
     <script>
         window.addEventListener("DOMContentLoaded",(e)=>{
             const sidenav = document.getElementById('notesidenav');
-            const instance = mdb.Sidenav.getInstance(sidenav);
+            const sidenavInstance = new mdb.Sidenav(sidenav);
             let innerWidth = null;
 
             const setMode = (e) => {
@@ -354,13 +354,13 @@
 
                 innerWidth = window.innerWidth;
 
-                //if (window.innerWidth < 660) {
-                //    instance.changeMode('over');
-                //    instance.hide();
-                //} else {
-                //    instance.changeMode('side');
-                //    instance.show();
-                //}
+                if (window.innerWidth < 660) {
+                    sidenavInstance.changeMode('over');
+                    sidenavInstance.hide();
+                } else {
+                    sidenavInstance.changeMode('side');
+                    sidenavInstance.show();
+                }
             };
             setMode(e);
 

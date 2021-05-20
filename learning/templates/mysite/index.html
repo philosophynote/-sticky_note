@@ -10,7 +10,8 @@
         <div class="row">
                 <div class="d-flex open-editor">
                     <h4>{{ request.user }}さん Nevernoteへようこそ！</h4>
-                    <button class="btn btn-light-blue btn-md">エディタを開く</button>
+                    <button class="btn btn-light-blue btn-md editor-open">エディタを開く</button>
+                    <a type="button" class="btn btn-light-blue btn-md note-save" id="download" download='editor.txt'>ダウンロード</a>
                 </div>
                 {% for item in card_list %}
 
@@ -20,18 +21,17 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ item.title }}</h5>
-                        <a href="{% url 'learning:card_detail' item.id %}" type="button" class="btn btn-light-blue btn-md">もっと読む</a>
-                    </div>
-                    <div class="card-footer text-muted">
                         <a class="btn btn-light " data-mdb-ripple-color="dark" data-mdb-toggle="collapse"
                             href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             内容を見る
                         </a>
                         <div class="collapse mt-3" id="collapseExample">
-                            ・意味：{{ item.what }}</br>
-                            ・原因：{{ item.why }}</br>
-                            ・考え：{{ item.sowhat }}</br>
+                            {{ item.subtitle|safe|truncatechars_html:100 }}</br>
                         </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="{% url 'learning:card_detail' item.id %}" type="button" class="btn btn-light-blue btn-md">もっと読む</a>
+
                     </div>
                 </div>
                 {% endfor %}
@@ -39,17 +39,21 @@
         </div>
         <div class="row">
             <div class="col-sm-3"></div>
-            <div class="col-sm-8 index-editor">
-                <div id="quill-editor_1"></div>
+            <div class="col-sm-8 index-editor" style="display: none;">
+                <div  id="quill-editor_1"></div>
             </div>
         </div>
     </div>
 
     <script>
         const color_array =["bg-primary","bg-secondary","bg-success","bg-danger","bg-warning","bg-info"];
-        let color_num = Math.ceil(Math.random() * color_array.length);
+        let color_num = Math.floor(Math.random() * color_array.length);
         let color=color_array[color_num];
         $(".card-color").addClass(color);
+
+        $('.editor-open').on('click', () => {
+            $('.index-editor').slideToggle();
+        });
     </script>
 
 
