@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import dj_database_url
 import os
 from pathlib import Path
 
@@ -45,7 +46,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -75,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'JScontest.wsgi.application'
+# WSGI_APPLICATION = 'JScontest.wsgi.application'
 
 
 # Database
@@ -143,16 +144,15 @@ LOGIN_REDIRECT_URL = 'learning:index'
 LOGOUT_REDIRECT_URL = 'learning:logout'
 
 # herokuのための追記
-import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FOWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
 
-#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # deployするときはコメント外す
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEBUG = False
 
@@ -162,4 +162,15 @@ except ImportError:
     pass
 
 if not DEBUG:
-    SECRET_KEY = os.environ["SECRET_KEY"]
+    SECRET_KEY = os.environ['SECRET_KEY']
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    # AWSのための追記
+    AWS_STORAGE_BUCKET_NAME = 'Naoki'
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AMW_S3_OBJECT_PARAMETERS = {
+        'CacheContorol': 'max-age=86400',  # 1日はそのキャッシュを使う
+    }
+    AWS_LOCATION = 'media'
+    DEFAULLT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
