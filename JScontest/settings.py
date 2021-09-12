@@ -129,7 +129,7 @@ USE_TZ = True
 
 #PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 #STATIC_ROOT = os.path.join(BASE_DIR, 'project_static')
-STATIC_URL = '/static/'
+STATIC_URL = 'learning/static/'
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'))
 
 # Default primary key field type
@@ -152,7 +152,7 @@ ALLOWED_HOSTS = ['*']
 
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # deployするときはコメント外す
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'learning/static')
 
 DEBUG = False
 

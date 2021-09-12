@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from . import views
 
 app_name = 'learning'
 
@@ -19,4 +20,4 @@ urlpatterns = [
          views.CategoryDetail.as_view(), name='category_detail'),
     # path('search', views.Search, name='search'),
 ]
-
+handler500 = views.my_customized_server_error
