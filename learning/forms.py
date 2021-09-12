@@ -33,8 +33,8 @@ class SignUpForm(UserCreationForm):
             field.widget.attrs["class"] = "form-control"
 
 
-class SearchForm(forms.Form):
-    freeword = forms.CharField(min_length=1, max_length=30, label='', required=False)
+# class SearchForm(forms.Form):
+#     freeword = forms.CharField(min_length=1, max_length=30, label='', required=False)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)

@@ -25,7 +25,7 @@
   <header>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
-      <h1>Nevernote</h1>
+      <h1>StichyNote</h1>
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -38,22 +38,6 @@
         >
           <i class="fas fa-bars"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarExample01">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nevernoteが選ばれる理由</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">機能</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">プラン</a>
-            </li>
-          </ul>
-        </div>
       </div>
     </nav>
     <!-- Navbar -->
@@ -61,11 +45,10 @@
     <!-- Jumbotron -->
     <div class="p-5 text-center maintext">
       <h1 class="mb-3">メモとノートの融合で、アイデアをもっと形に</h1>
-      <h4 class="mb-3">※NevernoteはEvernoteと全く関係ありません</h4>
       <br>
       <br>
-      <a class="btn evernote" href="{% url 'learning:signup' %}" role="button">新規登録</a>
-      <a class="btn evernote" href="{% url 'learning:login' %}" role="button">ログイン</a>
+      <a class="btn evernote text-white " href="{% url 'learning:signup' %}" role="button" style="background-color:#008f25";>新規登録</a>
+      <a class="btn evernote text-white " href="{% url 'learning:login' %}" role="button" style="background-color:#008f25";>ログイン</a>
     </div>
     <!-- Jumbotron -->
   </header>
@@ -73,168 +56,16 @@
     <div class="row">
       <div class="card mb-3">
         <div class="row g-0">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <img
               src="{% static 'img/note.jpeg' %}"
               alt="note"
               class="img-fluid"
             />
           </div>
-          <div class="col-md-6">
-            <div class="card-body hada-comment">
-              <p class="card-text fs-3">
-                <br>
-                ・（将来的に）各種デバイスへ対応<br>
-                <br>
-                ・（将来的に）各種メディア保存が可能<br>
-                <br>
-                ・（ある程度は）自由に編集<br>
-                <br>
-                ・（タイトルと本文のみ）検索機能搭載
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-6">
-            <div class="card-body hada-comment">
-              <i class="fas fa-quote-left quote d-flex align-items-center justify-content-center fa-2x style='color:darkgreen'"></i>
-              <br>
-              <p class="card-text fs-3">
-                Evernoteと間違えて登録してしまった。<br>
-                ややこしいのでサービス廃止してほしい。
-              </p>
-              <p class="card-text fs-3">
-                －羽田　圭介
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6 hada-pic">
-            <img
-              src="{% static 'img/hada_2.jpeg' %}"
-              alt="羽田圭介"
-            />
-          </div>
         </div>
       </div>
     </div>
-    <br>
-    <br>  
-    <div class="row">
-
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!-- Card -->
-            <div class="card">
-
-              <div class="card-header bg-white py-3">
-                <p class="text-uppercase small mb-2"><strong>ベーシック</strong></p>
-                <h5 class="mb-0">無料</h5>
-              </div>
-
-              <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">KJ法風付箋活用</li>
-                  <li class="list-group-item">ISBNコード読み取り対応</li>
-                  <li class="list-group-item">定型文章生成機能</li>
-                </ul>
-              </div>
-
-              <div class="card-footer bg-white py-3">
-                <button type="button" class="btn btn-success btn-sm">Get it</button>
-              </div>
-
-            </div>
-            <!-- Card -->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!-- Card -->
-            <div class="card border border-primary">
-
-              <div class="card-header bg-white py-3">
-                <p class="text-uppercase small mb-2"><strong>エッセンシャル</strong></p>
-                <h5 class="mb-0">Coming Soon</h5>
-              </div>
-
-              <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Coming Soon</li>
-                </ul>
-              </div>
-
-              <div class="card-footer bg-white py-3">
-                <button type="button" class="btn btn-primary btn-sm">Coming Soon</button>
-              </div>
-
-            </div>
-            <!-- Card -->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!-- Card -->
-            <div class="card">
-
-              <div class="card-header bg-white py-3">
-                <p class="text-uppercase small mb-2"><strong>アドバンス</strong></p>
-                <h5 class="mb-0">Coming Soon</h5>
-              </div>
-
-              <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Coming Soon</li>
-                </ul>
-              </div>
-
-              <div class="card-footer bg-white py-3">
-                <button type="button" class="btn btn-info btn-sm">Coming Soon</button>
-              </div>
-
-            </div>
-            <!-- Card -->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-
-            <!-- Card -->
-            <div class="card">
-
-              <div class="card-header bg-white py-3">
-                <p class="text-uppercase small mb-2"><strong>スペシャル</strong></p>
-                <h5 class="mb-0">Coming Soon</h5>
-              </div>
-
-              <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Coming Soon</li>
-                </ul>
-              </div>
-
-              <div class="card-footer bg-white py-3">
-                <button type="button" class="btn btn-info btn-sm">Coming Soon</button>
-              </div>
-
-            </div>
-            <!-- Card -->
-
-          </div>
-          <!--Grid column-->
-
-        </div>
     <!-- Footer -->
   </main>  
 <footer class="text-center text-lg-start bg-light text-muted">
@@ -285,7 +116,7 @@
             <i class="fas fa-gem me-3"></i>※会社は存在しません
           </h6>
           <p>
-            このアプリケーションは試作品であり、Evernote本体とは全く関係がありません
+            このアプリケーションは試作品です。
           </p>
         </div>
         <!-- Grid column -->
@@ -356,7 +187,7 @@
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Nevernote</a>
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">StichyNote</a>
   </div>
   <!-- Copyright -->
 </footer>

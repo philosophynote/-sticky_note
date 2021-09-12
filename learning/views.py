@@ -3,9 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, DeleteView, ListView
 from .models import Card, Category
 from django.urls import reverse_lazy
-from .forms import CardForm, LoginForm, SignUpForm, SearchForm
+from .forms import CardForm, LoginForm, SignUpForm
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -18,8 +17,6 @@ class TopPage(TemplateView):
 
     def Toppage(request):
         return render(request,'mysite/toppage.html,{}')
-
-
 
 class Index(TemplateView):
     template_name = 'mysite/index.html'
@@ -147,17 +144,17 @@ class CategoryDetail(DetailView):
         return params
 
 
-def Search(request):
-    if request.method == "POST":
-        searchform = SearchForm(request.POST)
+# def Search(request):
+#     if request.method == "POST":
+#         searchform = SearchForm(request.POST)
 
-        if searchform.is_valid():
-            freeword = searchform.cleaned_data["freeword"]
-            search_list = Card.objects.filter(Q(title__icontains=freeword)|Q(content__icontains=freeword))
+#         if searchform.is_valid():
+#             freeword = searchform.cleaned_data["freeword"]
+#             search_list = Card.objects.filter(Q(title__icontains=freeword)|Q(content__icontains=freeword))
 
-        params = {
-            'search_list': search_list,
-        }
-        return render(request, 'mysite/search.html', params)
+#         params = {
+#             'search_list': search_list,
+#         }
+#         return render(request, 'mysite/search.html', params)
 
 

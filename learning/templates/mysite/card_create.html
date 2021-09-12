@@ -1,9 +1,7 @@
 {%  extends 'mysite/base.html'  %}
 
 {% block content %}
-<div class="container">
-     <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
                <br>
                <h2>カード登録・更新</h2>
                <br>
@@ -18,11 +16,13 @@
                     <br>
                     <div class="form-group">
                          <label class="fs-4">URL</label>
+                         <br>
                          {{ form.url}}
                     </div>
                     <br>
                     <div class="form-group">
                          <label class="fs-4">引用箇所</label>
+                         <br>
                          {{ form.section}}
                     </div>
                     <br>
@@ -30,6 +30,7 @@
                          <label class="fs-4">タイトル</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_1">音声入力開始</button>
                          <button class="btn btn-rounded btn-secondary form-button" id="ISBNbutton" data-mdb-toggle="modal" data-mdb-dismiss="modal" data-mdb-target="#ISBNModal">バーコード読み取り</button>
+                         <br>
                          <!-- Modal -->
                          <div class="modal fade" id="ISBNModal" tabindex="-1" aria-labelledby="ISBNModalTitle" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-scrollable">
@@ -61,30 +62,35 @@
                     <div class="form-group">
                          <label class="fs-4">見出し</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_2">音声入力開始</button>
+                         <br>
                          {{ form.subtitle}}
                     </div>
                     <br>
                     <div class="form-group">
                          <label class="fs-4">本文</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_3">音声入力開始</button>
+                         <br>
                          {{form.content }}
                     </div>
                     <br>
                     <div class="form-group">
                          <label class="fs-4">What？</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_4">音声入力開始</button>
+                         <br>
                          {{form.what }}
                     </div>
                     <br>
                     <div class="form-group">
                          <label class="fs-4">Why？</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_5">音声入力開始</button>
+                         <br>
                          {{form.why }}
                     </div>
                     <br>
                     <div class="form-group">
                          <label class="fs-4">So What？</label>
                          <button class="btn btn-rounded form-button" id="speechbutton_6">音声入力開始</button>
+                         <br>
                          {{form.sowhat }}
                     </div>
                     <br>
@@ -95,12 +101,5 @@
 
                </form>
           </div>
-          <div class="col-md-6 editor">
-            <div id="quill-editor_2">
-            </div>
-          </div>
-
-     </div>
-</div>
 
 {% endblock %}

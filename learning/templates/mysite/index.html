@@ -6,42 +6,33 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-                <div class="d-flex open-editor">
-                    <h4>{{ request.user }}さん Nevernoteへようこそ！</h4>
-                    <button class="btn btn-light-blue btn-md editor-open">エディタを開く</button>
-                    <a type="button" class="btn btn-light-blue btn-md note-save" id="download" download='editor.txt'>ダウンロード</a>
+        <div class="col-md-4">
+        
+            <div class="d-flex open-editor">
+                <h4>{{ request.user }}さん Stichynoteへようこそ！</h4>
+            </div>
+            {% for item in card_list %}
+
+            <div class="col-md-8 card text-center swiper-slide dragcard "  draggable="true">
+                <div class="card-header card-color text-white">
+                    {{ item.category }}
                 </div>
-                {% for item in card_list %}
-
-                <div class="col-sm-3 card text-center swiper-slide dragcard "  draggable="true">
-                    <div class="card-header card-color text-white">
-                        {{ item.category }}
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ item.title }}</h5>
-                        <a class="btn btn-light " data-mdb-ripple-color="dark" data-mdb-toggle="collapse"
-                            href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            内容を見る
-                        </a>
-                        <div class="collapse mt-3" id="collapseExample">
-                            {{ item.subtitle|safe|truncatechars_html:100 }}</br>
-                        </div>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <a href="{% url 'learning:card_detail' item.id %}" type="button" class="btn btn-light-blue btn-md">もっと読む</a>
-
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <a class="btn btn-light " data-mdb-ripple-color="dark" data-mdb-toggle="collapse"
+                        href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        内容を見る
+                    </a>
+                    <div class="collapse mt-3" id="collapseExample">
+                        {{ item.subtitle|safe|truncatechars_html:100 }}</br>
                     </div>
                 </div>
-                {% endfor %}
+                <div class="card-footer text-muted">
+                    <a href="{% url 'learning:card_detail' item.id %}" type="button" class="btn btn-light-blue btn-md">もっと読む</a>
+
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-8 index-editor" style="display: none;">
-                <div  id="quill-editor_1"></div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
