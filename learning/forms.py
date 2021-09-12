@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class CardForm(forms.ModelForm):
     class Meta:
         model = Card
-        fields = ('category','url','title','subtitle','section','content','what','why','sowhat')
+        fields = ('category','url','title','subtitle','section','content','what','why','sowhat',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

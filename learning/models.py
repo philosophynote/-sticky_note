@@ -31,8 +31,6 @@ class Card(models.Model):
     why = models.TextField("理由", max_length=200)
     sowhat = models.TextField("だから何", max_length=200)
 
-
-
     def __str__(self):
         return self.title 
         # 管理画面でタイトル参照
