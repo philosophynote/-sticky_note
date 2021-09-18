@@ -20,4 +20,4 @@ urlpatterns = [
          views.CategoryDetail.as_view(), name='category_detail'),
     # path('search', views.Search, name='search'),
 ]
-handler500 = views.my_customized_server_error
+
